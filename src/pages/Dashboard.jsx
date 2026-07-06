@@ -42,7 +42,7 @@ const employees = [
     department: "Operations",
     status: "Leave",
     email: "umaima1@company.com",
-  },
+  }
 ];
 
     return (
