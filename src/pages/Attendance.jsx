@@ -2,7 +2,7 @@ function Attendance()
 {
     return(
         <h1>
-         Attendace 
+         Attendance 
         </h1>
     );
 }
