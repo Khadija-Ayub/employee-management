@@ -1,15 +1,19 @@
 import {FiMenu} from "react-icons/fi"; 
+import "../../styles/header.css";
 function Header({collapsed , setCollapsed})
 {
     return(
          <header className="header" >
-            <div>
-                <button onClick={()=>setCollapsed(!collapsed)} >
+            <div className="header-left" >
+                <button className="menu-btn" onClick={()=>setCollapsed(!collapsed)} >
                      < FiMenu/> </button>
+                <span className="title" > Employee Management System</span>
             </div>
-            <div>
-                Khadija 
-            </div>
+            <div className="header-right">
+             <div className="user-info">
+               <span className="username">Khadija</span> 
+             </div> 
+            </div> 
          </header>
     );
 }

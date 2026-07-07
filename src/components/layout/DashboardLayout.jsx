@@ -2,6 +2,7 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import {Outlet } from 'react-router-dom';
 import { useState } from "react";
+import "../../styles/dashboardLayout.css";
 
 function DashboardLayout()
 {

@@ -6,6 +6,7 @@ import { FiLogOut } from "react-icons/fi";
 import { IoSettingsSharp } from "react-icons/io5";
 import { BsCalendarCheck } from "react-icons/bs";
 import "../../styles/sidebar.css";
+import logo from "../../assets/logo.jpg";
 
 
 const menuItems =[
@@ -41,7 +42,11 @@ const menuItems =[
 function Sidebar({collapsed})
 {
     return(
+
          <aside className={collapsed ? " sidebar collapsed" : "sidebar"} >
+          <div className="sidebar-logo">
+                <img  src={logo} alt="logo"/>
+        </div>
           <ul className="sidebar-list" >
               {menuItems.map((item)=>(
                 <li key={item.title}  className={item.bottom ? "logout-item" : ""} >

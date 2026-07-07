@@ -4,6 +4,7 @@ import { MdApartment } from "react-icons/md";
 import { BsCalendarCheck } from "react-icons/bs";
 import { HiUserAdd } from "react-icons/hi";
 import EmployeeTable from "../components/dashboard/EmployeeTable";
+import "../styles/dashboard.css"
 
 function Dashboard()
 {
@@ -50,7 +51,7 @@ const employees = [
          <h1>Welcome Back!</h1>
          <p>Manage your employees and monitor company activities.</p>
          <div className="stat-container" >
-          <StatCard  
+          <StatCard   
           icon={<FaUsers/>}
           title="Total Employees"
           number={245}

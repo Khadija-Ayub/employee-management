@@ -1,0 +1,33 @@
+.header{
+    display: flex;
+    background-color: rgb(39, 75, 104);
+    color: aliceblue;
+    height: 50px;
+    border-radius: var(--radius);
+    box-shadow: var(--box-shadow);
+    border-bottom: 2px solid #333333;
+    flex-direction: row;
+    align-items: center;
+}
+.menu-btn{
+    font-size: larger;
+    color: rgb(241, 235, 240);
+}
+.header-right{
+    
+    margin-left: auto;
+}
+.header-left{
+    color: #f8fafa;
+    padding-left:  10px; ;
+}
+.header-left span{
+    padding-left: 30px;
+    font-size: 24px;
+}
+@media (max-width: 768px) {
+    .header-left span{
+        font-size: 18px;
+    }
+}
+

@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #2563eb;
-  --primary-hover: #1d4ed8;
+  --primary-color: hsl(221, 83%, 53%);
+  /* --primary-hover: #2F3E52; */
 
   --background-color: #f8fafc;
   --surface-color: #ffffff;
 
-  --text-primary: #1f2937;
+  --text-primary: #082448;
   --text-secondary: #6b7280;
 
   --border-color: #e5e7eb;
@@ -16,11 +16,14 @@
 
  
 
-  --sidebar-bg: #1f2937;
-  --sidebar-text: #ffffff;
+  --sidebar-bg: #1F2A3A;
+  --primary: #4F8EF7;
+  --primary-hover: #6FCFC5;
+  --sidebar-text: #E5E7EB;
+
 
   --radius: 10px;
-
+  --box-shadow: 0 2px 8px rgba(0,0,0,0.30);
   --shadow: 0 2px 8px rgba(0,0,0,0.08);
 
 }

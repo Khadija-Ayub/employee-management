@@ -1,8 +1,9 @@
 function EmployeeTable({employees})
 {
     return(
-        <table>
-            <thead>
+        <div className="table-container">
+        <table  >
+            <thead className="t-head" >
                 <tr>
                     <th>Name</th>
                     <th>Department</th>
@@ -10,7 +11,7 @@ function EmployeeTable({employees})
                     <th>Email</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="t-body"  >
                { employees.map((employee) => (
                     <tr key={employee.id}>
                         <td> {employee.name} </td>
@@ -22,7 +23,7 @@ function EmployeeTable({employees})
                 )
                 )}
             </tbody>
-        </table>
+        </table></div>
     );
 }
  export default  EmployeeTable
