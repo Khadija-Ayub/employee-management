@@ -3,48 +3,12 @@ import { FaUsers } from "react-icons/fa";
 import { MdApartment } from "react-icons/md";
 import { BsCalendarCheck } from "react-icons/bs";
 import { HiUserAdd } from "react-icons/hi";
-import EmployeeTable from "../components/dashboard/EmployeeTable";
+
 import "../styles/dashboard.css"
 
 function Dashboard()
 {
-const employees = [
-  {
-    id: 1,
-    name: "Abdullah Asim",
-    department: "HR",
-    status: "Present",
-    email: "abdullah@company.com",
-  },
-  {
-    id: 2,
-    name: "Khadija Ayub",
-    department: "IT",
-    status: "Present",
-    email: "khadija@company.com",
-  },
-  {
-    id: 3,
-    name: "Zarmina Atif",
-    department: "Finance",
-    status: "Absent",
-    email: "za@company.com",
-  },
-  {
-    id: 4,
-    name: "Hamza ",
-    department: "Marketing",
-    status: "Present",
-    email: "ha@company.com",
-  },
-  {
-    id: 5,
-    name: "Umaima ",
-    department: "Operations",
-    status: "Leave",
-    email: "umaima1@company.com",
-  }
-];
+
 
     return (
         <div className="dashboard">
@@ -74,7 +38,7 @@ const employees = [
 
 
          </div>
-         <EmployeeTable employees={employees}/>
+         
         </div>
     );
 }

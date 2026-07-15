@@ -1,29 +1,60 @@
-function EmployeeTable({employees})
-{
-    return(
+import { FaRegTrashCan } from "react-icons/fa6";
+import { MdOutlineUpdate } from "react-icons/md";
+function EmployeeTable({ employees, handleDelete, handleUpdate }) {
+    return (
         <div className="table-container">
-        <table  >
-            <thead className="t-head" >
-                <tr>
-                    <th>Name</th>
-                    <th>Department</th>
-                    <th>Status</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody className="t-body"  >
-               { employees.map((employee) => (
-                    <tr key={employee.id}>
-                        <td> {employee.name} </td>
-                        <td> {employee.department} </td>
-                        <td> {employee.status} </td>
-                        <td> {employee.email} </td>
+            <table  >
+                <thead className="t-head" >
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Gender</th>
+                        <th>Joining Date</th>
+                        <th>Salary</th>
+                        <th>Address</th>
+                        <th>Actions</th>
                     </tr>
+                </thead>
+                <tbody className="t-body">
+                    {employees.length > 0 ? (
+                        employees.map((employee) => (
+                            <tr key={employee.id}>
+                                <td>{employee.fullname}</td>
+                                <td>{employee.email}</td>
+                                <td>{employee.department}</td>
+                                <td>{employee.gender}</td>
+                                <td>{employee.joiningDate}</td>
+                                <td>Rs. {employee.salary.toLocaleString()}</td>
+                                <td>{employee.address}</td>
+                                <td>
+                                    <div className="action-buttons">
+                                        <button 
+                                            className="delete-btn"
+                                            onClick={() => handleDelete(employee.id)}
+                                        >
+                                            <FaRegTrashCan />
+                                        </button>
 
-                )
-                )}
-            </tbody>
-        </table></div>
+                                        <button
+                                            className="edit-btn"
+                                            onClick={() => handleUpdate(employee)}
+                                        >
+                                            <MdOutlineUpdate />
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="8" className="empty-message">
+                                No employees found.
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            </table></div>
     );
 }
- export default  EmployeeTable
+export default EmployeeTable
