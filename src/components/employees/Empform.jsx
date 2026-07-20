@@ -108,10 +108,17 @@ useEffect( ()=>{
             <label htmlFor="department" >Department</label>
             <select id="department" name="department" value={formData.department} onChange={handleChange} >
               <option value="" >Select Department</option>
-              <option value="HR" >HR</option>
+              <option value="Human Resources" >Human Resources</option>
               <option value="IT"  >IT</option>
               <option value="Finance"  >Finance</option>
               <option value="Marketing"  >Marketing</option>
+              <option value="Engineering"  >Engineering</option>
+              <option value="Services"  >Services</option>
+              <option value="Support"  >Support</option>
+              <option value="Accounting"  >Accounting</option>
+              <option value="Training"  >Training</option>
+              <option value="Legal"  >Legal</option>
+              <option value="Product Management"  >Product Management</option>
             </select>
             {errors.department && <small className="error-message" >{errors.department}</small>}</div>
 
@@ -119,9 +126,9 @@ useEffect( ()=>{
           <div className="form-group" >
             <div className="radio-group">
               <label>Gender</label>
-              <input id="male" type="radio" name="gender" value="Male" checked={formData.gender === "Male"} onChange={handleChange} />
+              <input id="male" type="radio" name="gender" value="male" checked={formData.gender === "male"} onChange={handleChange} />
               <label htmlFor="male" >Male</label>
-              <input id="female" type="radio" name="gender" value="Female" checked={formData.gender === "Female"} onChange={handleChange} />
+              <input id="female" type="radio" name="gender" value="female" checked={formData.gender === "female"} onChange={handleChange} />
               <label htmlFor="female" >Female</label>
               <input id="other" type="radio" name="gender" value="Other" checked={formData.gender === "Other"} onChange={handleChange} />
               <label htmlFor="other" >Other</label></div>

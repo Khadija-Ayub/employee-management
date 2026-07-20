@@ -1,6 +1,13 @@
 import { FaRegTrashCan } from "react-icons/fa6";
 import { MdOutlineUpdate } from "react-icons/md";
-function EmployeeTable({ employees, handleDelete, handleUpdate }) {
+function EmployeeTable({ employees, loading, error, handleDelete, handleUpdate }) {
+    if (loading) {
+    return <p className="empty-message">Loading Employees...</p>;
+  }
+
+  if (error) {
+    return <p className="empty-message">{error}</p>;
+  }
     return (
         <div className="table-container">
             <table  >
@@ -29,7 +36,7 @@ function EmployeeTable({ employees, handleDelete, handleUpdate }) {
                                 <td>{employee.address}</td>
                                 <td>
                                     <div className="action-buttons">
-                                        <button 
+                                        <button
                                             className="delete-btn"
                                             onClick={() => handleDelete(employee.id)}
                                         >
@@ -46,12 +53,14 @@ function EmployeeTable({ employees, handleDelete, handleUpdate }) {
                                 </td>
                             </tr>
                         ))
-                    ) : (
-                        <tr>
-                            <td colSpan="8" className="empty-message">
-                                No employees found.
-                            </td>
-                        </tr>
+                    ) : 
+                     
+                    (
+                    <tr>
+                        <td colSpan="8" className="empty-message">
+                            No employees found.
+                        </td>
+                    </tr>
                     )}
                 </tbody>
             </table></div>

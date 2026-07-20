@@ -1,17 +1,44 @@
 import Empform from "../components/employees/Empform";
 import "../styles/employees.css"
 import EmployeeTable from "../components/dashboard/EmployeeTable";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 function Employees() {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [employees, setEmployees] = useState([
-    { id: 1, fullname: "Khadija Ayub", email: "khadija@synexus.com", department: "HR", gender: "Female", joiningDate: "2026-01-12", salary: 44500, address: "Rawalpindi" },
+  const [employees, setEmployees] = useState([]);
+  const [loading , setLoading ] = useState(false);
+  const [error , setError ] = useState("");
 
-    { id: 2, fullname: "Abdullah Asim", email: "abdullah@synexus.com", department: "IT", gender: "Male", joiningDate: "2026-01-13", salary: 55500, address: "Rawalpindi" },
-    { id: 3, fullname: "Amna Faisal", email: "amna@synexus.com", department: "HR", gender: "Female", joiningDate: "2026-01-14", salary: 50000, address: "Rawalpindi" },
-    { id: 4, fullname: "Hamza ", email: "hamza@synexus.com", department: "Finance", gender: "Male", joiningDate: "2026-01-15", salary: 44500, address: "Rawalpindi" },
-    { id: 5, fullname: "Zarmina Atif", email: "zarmina@synexus.com", department: "HR", gender: "Female", joiningDate: "2026-01-16", salary: 40000, address: "Rawalpindi" }
-  ])
+  useEffect( ()=>{
+    async function fetchEmployees() {
+      try{
+            const response = await fetch("https://dummyjson.com/users");
+            if(!response.ok){
+              throw new error("Failed to fetch data. ")
+            }
+            const data =await response.json();
+            const transformedEmployees = data.users.map((user)=>({
+              id : user.id,
+              fullname : `${user.firstName} ${user.lastName} `,
+              email : user.email,
+              department : user.company.department,
+              gender : user.gender,
+              joiningDate : "N/A",
+              salary : Math.floor(Math.random() * 50000) + 30000,
+              address: `${user.address.city} , ${user.address.state}`
+            }));
+            setEmployees(transformedEmployees);
+      }    
+      catch(error)
+      {
+        setError("Failed to fetch employees.");
+      }
+      finally{
+        setLoading(false);
+      }
+      
+    }
+    fetchEmployees();
+  } , []);
 
   function handleAddEmployee(newEmployee) {
     const empWithId = {
@@ -51,7 +78,7 @@ function Employees() {
   return (
     <div className="emp-main" >
       <Empform handleAddEmployee={handleAddEmployee} selectedEmployee={selectedEmployee} handleUpdateEmployee={handleUpdateEmployee} clearSelectedEmployee={clearSelectedEmployee} />
-      <EmployeeTable employees={employees} handleDelete={handleDelete} handleUpdate={handleUpdate} />
+      <EmployeeTable employees={employees} loading={loading} error={error}  handleDelete={handleDelete} handleUpdate={handleUpdate} />
     </div>
   );
 }
