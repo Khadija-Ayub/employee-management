@@ -2,10 +2,10 @@
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 ![Vite](https://img.shields.io/badge/Vite-Frontend-646CFF?logo=vite)
-![Status](https://img.shields.io/badge/Status-Week%202-success)
+![Status](https://img.shields.io/badge/Status-Week%203-success)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-A modern and responsive **Employee Management System Dashboard** built using **React** and **Vite**. The project demonstrates React fundamentals including reusable components, client-side routing, CRUD operations, controlled forms, state management, validation, and responsive UI design.
+A modern and responsive **Employee Management System Dashboard** built using **React** and **Vite**. The project demonstrates React fundamentals including reusable components, client-side routing, CRUD operations, controlled forms, API integration, searching, sorting, pagination, state management, validation, and responsive UI design.
 
 ---
 
@@ -16,7 +16,10 @@ The Employee Management System Dashboard provides administrators with an intuiti
 The project follows a **component-based architecture** and was developed to strengthen practical React development skills through real-world features such as:
 
 - Dashboard Layout
-- Employee CRUD
+- Employee CRUD Operations
+- API Integration
+- Search & Sorting
+- Pagination
 - Form Validation
 - Responsive Design
 - State Management
@@ -51,10 +54,15 @@ The project follows a **component-based architecture** and was developed to stre
 - Add Employee
 - Update Employee
 - Delete Employee
+- Search Employees
+- Sort Employees
+- Client-side Pagination
 - Responsive Employee Table
 - Department Information
 - Salary Formatting
 - Empty Table State
+- Loading Skeleton
+- Error State Handling
 
 ---
 
@@ -65,6 +73,16 @@ The project follows a **component-based architecture** and was developed to stre
 - Success Messages
 - Auto Form Reset
 - Real-time Form Updates
+
+---
+
+## 🌐 API Integration
+
+- Fetch employee data using Fetch API
+- Transform API response into application model
+- Loading Skeleton while fetching
+- Error State
+- Empty State
 
 ---
 
@@ -87,9 +105,24 @@ The project follows a **component-based architecture** and was developed to stre
 - JavaScript (ES6+)
 - React Router DOM
 - React Hooks (`useState`, `useEffect`)
+- Fetch API
 - React Icons
 - HTML5
 - CSS3
+
+---
+
+# 🌐 Mock API
+
+Employee data is fetched from the **DummyJSON Users API**.
+
+### Endpoint
+
+```text
+https://dummyjson.com/users
+```
+
+The fetched user data is transformed into the application's employee model before rendering it inside the employee table.
 
 ---
 
@@ -103,6 +136,7 @@ src/
 ├── components/
 │   ├── dashboard/
 │   │   ├── EmployeeTable.jsx
+│   │   ├── LoadingSkeleton.jsx
 │   │   └── StatCard.jsx
 │   │
 │   ├── employees/
@@ -180,14 +214,17 @@ npm run dev
 
 ---
 
-## ➕ Add Employee Form
+## 🔍 Search Employees
 
-![Employee Form](screenshots/add-employee.png)
+![Search](screenshots/search.png)
 
 ---
 
+## ↕ Sort Employees
 
+![Sorting](screenshots/sorting.png)
 
+---
 # ✅ Validation Scenarios
 
 The Employee Form performs client-side validation before allowing data submission.
@@ -242,83 +279,11 @@ The Employee Form performs client-side validation before allowing data submissio
 - Form Validation
 - Dynamic Rendering using `map()`
 - Array Filtering using `filter()`
-- Updating Arrays using `map()`
+- Array Sorting using `sort()`
+- Pagination using `slice()`
+- Fetch API
+- API Data Transformation
 - Event Handling
-
----
-
-# 🎯 Learning Objectives
-
-This project helped strengthen practical understanding of:
-
-- React Fundamentals
-- CRUD Operations
-- State Management
-- Form Handling
-- Controlled Components
-- Callback Functions
-- useEffect
-- React Router
-- Responsive Design
-- Component Reusability
-- Git & GitHub Workflow
-
----
-
-# 🚧 Future Improvements
-
-- Search Employees
-- Filter Employees
-- Sort Employees
-- Pagination
-- Department CRUD
-- Attendance Management
-- Backend API Integration
-- Database Connectivity
-- Authentication
-- Charts & Analytics
-- Dark Mode
-
----
-
-# 📈 Project Status
-
-## ✅ Week 1 Completed
-
-- Dashboard Layout
-- Sidebar
-- Header
-- Routing
-- Statistics Cards
-- Employee Table
-- Responsive Design
-
----
-
-## ✅ Week 2 Completed
-
-- Employee CRUD
-- Add Employee
-- Update Employee
-- Delete Employee
-- Controlled Forms
-- Form Validation
-- Success Messages
-- React State Management
-- Callback Props
-- useEffect
-- Responsive Employee Form
-- Responsive Employee Table
-
----
-
-## 🚀 Upcoming Features
-
-- Search Functionality
-- Filters
-- Sorting
-- Backend Integration
-- Authentication
 
 ---
 
