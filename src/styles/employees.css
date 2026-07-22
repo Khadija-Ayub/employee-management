@@ -282,3 +282,71 @@ tbody tr:hover{
 .pagination button:hover{
     background:#d1d5db;
 }
+/* Container */
+.skeleton-container {
+    width: 100%;
+}
+
+/* One fake row */
+.skeleton-row {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+/* Individual fake cell */
+.skeleton-cell {
+    height: 18px;
+    border-radius: 6px;
+    background: #e5e7eb;
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+/* Different widths for each column */
+.skeleton-cell:nth-child(1) {
+    width: 150px;
+}
+
+.skeleton-cell:nth-child(2) {
+    width: 220px;
+}
+
+.skeleton-cell:nth-child(3) {
+    width: 140px;
+}
+
+.skeleton-cell:nth-child(4) {
+    width: 90px;
+}
+
+.skeleton-cell:nth-child(5) {
+    width: 130px;
+}
+
+.skeleton-cell:nth-child(6) {
+    width: 100px;
+}
+
+.skeleton-cell:nth-child(7) {
+    width: 200px;
+}
+
+.skeleton-cell:nth-child(8) {
+    width: 70px;
+}
+
+/* Animation */
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}

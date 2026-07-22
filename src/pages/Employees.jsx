@@ -33,6 +33,7 @@ function Employees() {
   useEffect(() => {
     async function fetchEmployees() {
       try {
+        setLoading(true);
         const response = await fetch("https://dummyjson.com/users");
         if (!response.ok) {
           throw new Error("Failed to fetch data. ")
@@ -44,7 +45,7 @@ function Employees() {
           email: user.email,
           department: user.company.department,
           gender: user.gender,
-          joiningDate: "N/A",
+          joiningDate: "2026-12-09",
           salary: Math.floor(Math.random() * 50000) + 30000,
           address: `${user.address.city} , ${user.address.state}`
         }));
@@ -116,32 +117,39 @@ function Employees() {
   }
 
   if (sortField === "fullname") {
-    (sortOrder === "asc") ? 
+    if(sortOrder === "asc") {
       sortedEmployees.sort((a, b) =>
         a.fullname.localeCompare(b.fullname)
-      ) :    
-      sortedEmployees.sort((a, b) =>
+      )
+    } else{
+       sortedEmployees.sort((a, b) =>
         b.fullname.localeCompare(a.fullname)
       );
+    }
+     
     
   }
   else if(sortField === "salary") {
-     (sortOrder === "asc") ?
+     if(sortOrder === "asc") {
       sortedEmployees.sort((a, b) =>
-      a.salary - b.salary) :
+      a.salary - b.salary)
+     } else{
       sortedEmployees.sort((a, b) =>
       b.salary - a.salary)
+     }
+      
     
   }
   else if(sortField === "department") {
     
-     (sortOrder === "asc") ?
+     if(sortOrder === "asc") {
       sortedEmployees.sort((a, b) =>
       a.department.localeCompare(b.department)
-    ) :
-      sortedEmployees.sort((a, b) =>
+    ) 
+     }else{ sortedEmployees.sort((a, b) =>
       b.department.localeCompare(a.department)
-    )
+    )}
+     
   }
   //Pagination
   const startIndex = (currentPage - 1) * employeesPerPage;

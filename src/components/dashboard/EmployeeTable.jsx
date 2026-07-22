@@ -1,9 +1,10 @@
 import { FaRegTrashCan } from "react-icons/fa6";
 import { MdOutlineUpdate } from "react-icons/md";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
+import LoadingSkeleton from "./LoadingSkeleton";
 function EmployeeTable({ currentEmployees, loading, error, searchTerm, setSearchTerm, handleDelete, handleUpdate, handleSort , sortField , sortOrder }) {
     if (loading) {
-        return <p className="empty-message">Loading Employees...</p>;
+        return <LoadingSkeleton employeesPerPage={5} />;
     }
 
     if (error) {
