@@ -5,8 +5,8 @@
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background:var(--background-color);
-    color:var(--text-primary);
+    background: var(--bg-color);
+    color: var(--text-color);
 
 }
 a{

@@ -3,8 +3,7 @@ import { FaUsers } from "react-icons/fa";
 import { MdApartment } from "react-icons/md";
 import { BsCalendarCheck } from "react-icons/bs";
 import { HiUserAdd } from "react-icons/hi";
-
-import "../styles/dashboard.css"
+import "../styles/dashboard/dashboard.css";
 
 function Dashboard()
 {
@@ -18,17 +17,17 @@ function Dashboard()
           <StatCard   
           icon={<FaUsers/>}
           title="Total Employees"
-          number={245}
+          number={211}
           />
           <StatCard  
           icon={<MdApartment/>}
           title="Departments"
-          number={10}
+          number={6}
           />
           <StatCard  
           icon={<BsCalendarCheck/>}
           title="Attendance Today "
-          number={220}
+          number={190}
           />
           <StatCard  
           icon={<HiUserAdd/>}

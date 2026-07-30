@@ -2,7 +2,10 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { MdOutlineUpdate } from "react-icons/md";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 import LoadingSkeleton from "./LoadingSkeleton";
-function EmployeeTable({ currentEmployees, loading, error, searchTerm, setSearchTerm, handleDelete, handleUpdate, handleSort , sortField , sortOrder }) {
+import Button from "../common/Button";
+import SearchInput from "../common/SearchInput";
+
+function EmployeeTable({ currentEmployees, loading, error, searchTerm, setSearchTerm, handleDelete, handleUpdate, handleSort, sortField, sortOrder }) {
     if (loading) {
         return <LoadingSkeleton employeesPerPage={5} />;
     }
@@ -10,40 +13,63 @@ function EmployeeTable({ currentEmployees, loading, error, searchTerm, setSearch
     if (error) {
         return <p className="empty-message">{error}</p>;
     }
+
+    function SortIcon({ field }) {
+    if (sortField !== field) {
+        return <FaSort aria-hidden="true" />;
+    }
+
+    return sortOrder === "asc"
+        ? <FaSortUp aria-hidden="true" />
+        : <FaSortDown aria-hidden="true" />;
+}
+
     return (
         <div className="table-container">
             <div className="table-header">
                 <h2>Employee List</h2>
-                <input
-                    type="text"
-                    placeholder="🔍 Search employees..."
+                <SearchInput
+                    placeholder="Search employees..."
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="search-input"
-                />
+                    onChange={(e) => setSearchTerm(e.target.value)} />
             </div>
             <table  >
 
                 <thead className="t-head" >
                     <tr>
-                        <th onClick={() => handleSort("fullname")} > Full Name {sortField === "fullname"
-                            ? sortOrder === "asc"
-                            ? <FaSortUp />
-                            : <FaSortDown />
-                            : <FaSort />} </th>
+                        <th  >
+                            <button
+                                type="button"
+                                className="sortable-header"
+                                onClick={() => handleSort("fullname")}
+                                aria-label={`Sort employees by full name, currently ${sortField === "fullname" ? sortOrder : "unsorted"
+                                    }`}
+                            >
+                                Full Name
+                                <SortIcon field="fullname" />
+                            </button>
+                        </th>
                         <th>Email</th>
-                        <th onClick={() => handleSort("department")}   >Department  {sortField === "department"
-                            ? sortOrder === "asc"
-                            ? <FaSortUp />
-                            : <FaSortDown />
-                            : <FaSort />} </th>
+                        <th>
+                            <button
+                                type="button"
+                                className="sortable-header"
+                                onClick={() => handleSort("department")}
+                                aria-label={`Sort employees by department, currently ${sortField === "department" ? sortOrder : "unsorted"
+                                    }`}                            >
+                                Department
+                                <SortIcon field="department" /> </button></th>
                         <th>Gender</th>
                         <th>Joining Date</th>
-                        <th onClick={() => handleSort("salary")}  >Salary {sortField === "salary"
-                            ? sortOrder === "asc"
-                            ? <FaSortUp />
-                            : <FaSortDown />
-                            : <FaSort />}</th>
+                        <th>
+                            <button
+                                type="button"
+                                className="sortable-header"
+                                onClick={() => handleSort("salary")}
+                                aria-label={`Sort employees by salary, currently ${sortField === "salary" ? sortOrder : "unsorted"
+                                    }`}                            >
+                                Salary
+                                <SortIcon field="salary" /></button></th>
                         <th>Address</th>
                         <th>Actions</th>
                     </tr>
@@ -61,19 +87,21 @@ function EmployeeTable({ currentEmployees, loading, error, searchTerm, setSearch
                                 <td>{employee.address}</td>
                                 <td>
                                     <div className="action-buttons">
-                                        <button
-                                            className="delete-btn"
+                                        <Button
+                                            variant="danger"
+                                            size="small"
+                                            icon={<FaRegTrashCan />}
+                                            ariaLabel="Delete employee"
                                             onClick={() => handleDelete(employee.id)}
-                                        >
-                                            <FaRegTrashCan />
-                                        </button>
+                                        />
 
-                                        <button
-                                            className="edit-btn"
+                                        <Button
+                                            variant="edit"
+                                            size="small"
+                                            icon={<MdOutlineUpdate />}
+                                            ariaLabel="Edit employee"
                                             onClick={() => handleUpdate(employee)}
-                                        >
-                                            <MdOutlineUpdate />
-                                        </button>
+                                        />
                                     </div>
                                 </td>
                             </tr>

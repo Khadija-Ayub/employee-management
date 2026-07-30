@@ -1,20 +1,39 @@
-import {FiMenu} from "react-icons/fi"; 
-import "../../styles/header.css";
-function Header({collapsed , setCollapsed})
-{
-    return(
-         <header className="header" >
+import { FiMenu, FiSun, FiMoon } from "react-icons/fi";
+import "../../styles/layout/header.css";
+import Button from "../common/Button";
+import { useState, useEffect } from "react";
+
+
+function Header({ collapsed, setCollapsed }) {
+
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    return (
+        <header className="header" >
             <div className="header-left" >
-                <button className="menu-btn" onClick={()=>setCollapsed(!collapsed)} >
-                     < FiMenu/> </button>
+                <Button
+                    variant="icon"
+                    icon={<FiMenu />}
+                    onClick={() => setCollapsed(!collapsed)}
+                />
                 <span className="title" > Employee Management System</span>
             </div>
             <div className="header-right">
-             <div className="user-info">
-               <span className="username">Khadija</span> 
-             </div> 
-            </div> 
-         </header>
+                <Button
+                    variant="theme"
+                    size="small"
+                    icon={theme === "light" ? <FiMoon /> : <FiSun />}
+                    onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                    ariaLabel={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+                />
+                
+            </div>
+        </header>
     );
 }
 

@@ -1,7 +1,10 @@
 import Empform from "../components/employees/Empform";
-import "../styles/employees.css"
 import EmployeeTable from "../components/dashboard/EmployeeTable";
 import { useState, useEffect } from "react";
+import Button from "../components/common/Button";
+import "../styles/common/button.css";
+import "../styles/common/form.css";
+import "../styles/dashboard/table.css";
 
 
 function Employees() {
@@ -27,8 +30,8 @@ function Employees() {
     employee.fullname.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
- const sortedEmployees = [...filteredEmployees];
-  
+  const sortedEmployees = [...filteredEmployees];
+
   // Fetching Api 
   useEffect(() => {
     async function fetchEmployees() {
@@ -102,11 +105,11 @@ function Employees() {
   function clearSelectedEmployee() {
     setSelectedEmployee(null);
   }
- 
+
   //sorting
   function handleSort(field) {
     if (sortField === field) {
-       (sortOrder === "asc") ?
+      (sortOrder === "asc") ?
         setSortOrder("desc") :
         setSortOrder("asc")
     }
@@ -117,50 +120,51 @@ function Employees() {
   }
 
   if (sortField === "fullname") {
-    if(sortOrder === "asc") {
+    if (sortOrder === "asc") {
       sortedEmployees.sort((a, b) =>
         a.fullname.localeCompare(b.fullname)
       )
-    } else{
-       sortedEmployees.sort((a, b) =>
+    } else {
+      sortedEmployees.sort((a, b) =>
         b.fullname.localeCompare(a.fullname)
       );
     }
-     
-    
+
+
   }
-  else if(sortField === "salary") {
-     if(sortOrder === "asc") {
+  else if (sortField === "salary") {
+    if (sortOrder === "asc") {
       sortedEmployees.sort((a, b) =>
-      a.salary - b.salary)
-     } else{
+        a.salary - b.salary)
+    } else {
       sortedEmployees.sort((a, b) =>
-      b.salary - a.salary)
-     }
-      
-    
+        b.salary - a.salary)
+    }
+
+
   }
-  else if(sortField === "department") {
-    
-     if(sortOrder === "asc") {
+  else if (sortField === "department") {
+
+    if (sortOrder === "asc") {
       sortedEmployees.sort((a, b) =>
-      a.department.localeCompare(b.department)
-    ) 
-     }else{ sortedEmployees.sort((a, b) =>
-      b.department.localeCompare(a.department)
-    )}
-     
+        a.department.localeCompare(b.department)
+      )
+    } else {
+      sortedEmployees.sort((a, b) =>
+        b.department.localeCompare(a.department)
+      )
+    }
+
   }
   //Pagination
   const startIndex = (currentPage - 1) * employeesPerPage;
   const endIndex = startIndex + employeesPerPage;
   const currentEmployees = sortedEmployees.slice(startIndex, endIndex);
   const totalPages = Math.ceil(sortedEmployees.length / employeesPerPage);
-  
-  useEffect(()=>
-    {
-     setCurrentPage(1) 
-    },[searchTerm]
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchTerm]
   );
 
 
@@ -169,24 +173,37 @@ function Employees() {
 
       <Empform handleAddEmployee={handleAddEmployee} selectedEmployee={selectedEmployee} handleUpdateEmployee={handleUpdateEmployee} clearSelectedEmployee={clearSelectedEmployee} />
 
-      <EmployeeTable currentEmployees={currentEmployees} searchTerm={searchTerm} setSearchTerm={setSearchTerm} loading={loading} error={error} handleDelete={handleDelete} handleUpdate={handleUpdate}  handleSort={handleSort}
-      sortField={sortField} sortOrder={sortOrder} />
+      <EmployeeTable currentEmployees={currentEmployees} searchTerm={searchTerm} setSearchTerm={setSearchTerm} loading={loading} error={error} handleDelete={handleDelete} handleUpdate={handleUpdate} handleSort={handleSort}
+        sortField={sortField} sortOrder={sortOrder} />
       <div className="pagination">
 
-        <button className="nav-btn"
-          disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} >
+        <Button
+          variant="secondary"
+          size="medium"
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
           Previous
-        </button>
+        </Button>
         {Array.from({ length: totalPages }).map((_, index) => (
-          <button key={index} onClick={() => setCurrentPage(index + 1)}
-            className={currentPage === index + 1 ? "active" : ""}>
+          <Button
+            key={index}
+            variant={currentPage === index + 1 ? "primary" : "secondary"}
+            size="small"
+            onClick={() => setCurrentPage(index + 1)}
+          >
             {index + 1}
-          </button>))}
+          </Button>
+        ))}
 
-        <button className="nav-btn"
-          disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}  >
+        <Button
+          variant="secondary"
+          size="medium"
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
           Next
-        </button>
+        </Button>
       </div>
     </div>
   );

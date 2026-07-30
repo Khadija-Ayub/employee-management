@@ -1,13 +1,13 @@
 .sidebar{
     display: flex;
     flex-direction: column;
-    color:var(--sidebar-textp);
-    background:var(--sidebar-bg);
+    color:#E5E7EB;
+    background:#1F2A3A;
     width: 250px;
     min-height: 100vh;
     transition: width 0.3s ease;
-    box-shadow: var(--box-shadow);
-    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.30);
+    border-radius: 10px;
     
 }
 .sidebar.collapsed span{
@@ -41,7 +41,7 @@
 }
 
 .sidebar-link:hover {
-    background-color: var(--primary-hover);
+    background-color: #6FCFC5;
 }
 
 .active-link {

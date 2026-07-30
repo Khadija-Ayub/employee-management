@@ -1,9 +1,10 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
+import Button from "../common/Button";
+import FormField from "../common/FormField";
+import Select from "../common/Select";
+import RadioGroup from "../common/RadioGroup";
 
-function Empform({ handleAddEmployee, selectedEmployee  , handleUpdateEmployee , clearSelectedEmployee}) {
-      console.log(selectedEmployee);
-  const [successMessage, setSuccessMessage] = useState("")
-  const initialFormData = {
+ const initialFormData = {
     fullname: "",
     email: "",
     department: "",
@@ -11,18 +12,24 @@ function Empform({ handleAddEmployee, selectedEmployee  , handleUpdateEmployee ,
     joiningDate: "",
     salary: "",
     address: ""
-  }
+  };
+
+function Empform({ handleAddEmployee, selectedEmployee, handleUpdateEmployee, clearSelectedEmployee }) {
+ 
+  const [successMessage, setSuccessMessage] = useState("");
   const [formData, setFormData] = useState(initialFormData);
+
   function handleChange(e) {
     setSuccessMessage("")
     const fieldName = e.target.name;
-    const fieldValue =  e.target.value;
+    const fieldValue = e.target.value;
 
     setFormData({
       ...formData,
       [fieldName]: fieldValue
     });
   }
+
   const [errors, setErrors] = useState(
     {
       fullname: "",
@@ -34,6 +41,7 @@ function Empform({ handleAddEmployee, selectedEmployee  , handleUpdateEmployee ,
       address: ""
     }
   );
+
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   function validateForm() {
     const newErrors = {};
@@ -67,23 +75,43 @@ function Empform({ handleAddEmployee, selectedEmployee  , handleUpdateEmployee ,
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      if(selectedEmployee)
-         {handleUpdateEmployee(formData);
-          clearSelectedEmployee();
-         }
-      else
-      {handleAddEmployee(formData)}
+      if (selectedEmployee) {
+        handleUpdateEmployee(formData);
+        clearSelectedEmployee();
+      }
+      else { handleAddEmployee(formData) }
 
       setFormData(initialFormData)
-       selectedEmployee ? setSuccessMessage("Employee updated successfully") : setSuccessMessage("Employee added successfully")
-       
+      selectedEmployee ? setSuccessMessage("Employee updated successfully") : setSuccessMessage("Employee added successfully")
+
     }
   }
-useEffect( ()=>{
-  if(selectedEmployee){
-    setFormData(selectedEmployee)};
-} , [selectedEmployee]
-) ;
+
+  useEffect(() => {
+    if (selectedEmployee) {
+      setFormData(selectedEmployee)
+    };
+  }, [selectedEmployee]
+  );
+  
+  const departments = [
+    "Human Resources",
+    "IT",
+    "Finance",
+    "Marketing",
+    "Engineering",
+    "Services",
+    "Support",
+    "Accounting",
+    "Training",
+    "Legal",
+    "Product Management"
+  ];
+  const genderOptions =[
+    "male" ,
+    "female" ,
+    "Other"
+  ];
 
   return (
     <div className="emp-form" >
@@ -92,68 +120,51 @@ useEffect( ()=>{
         <p className="emp-form-heading" >Add New Employee</p>
 
         <form className="main-form" onSubmit={handleSubmit} >
-          <div className="form-group" >
-            <label htmlFor="fullname"  >Full Name</label>
-            <input type="text" id="fullname" name="fullname" value={formData.fullname} onChange={handleChange} placeholder="i.e Khadija Ayub" />
-            {errors.fullname && <small className="error-message" >{errors.fullname}</small>}
-          </div>
+          
+          <FormField
+            name="fullname" label="Full name" value={formData.fullname}
+            onChange={handleChange}
+            placeholder="i.e Khadija Ayub"
+            error={errors.fullname}
+          />
 
-          <div className="form-group" >
-            <label htmlFor="email"  >Email</label>
-            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="khadijaayub1@gmail.com" />
-            {errors.email && <small className="error-message" >{errors.email}</small>}
-          </div>
+          <FormField name="email" type="email" label="Email" value={formData.email}
+            onChange={handleChange}
+            placeholder="khadijaayub1@gmail.com"
+            error={errors.email} />
 
-          <div className="form-group" >
-            <label htmlFor="department" >Department</label>
-            <select id="department" name="department" value={formData.department} onChange={handleChange} >
-              <option value="" >Select Department</option>
-              <option value="Human Resources" >Human Resources</option>
-              <option value="IT"  >IT</option>
-              <option value="Finance"  >Finance</option>
-              <option value="Marketing"  >Marketing</option>
-              <option value="Engineering"  >Engineering</option>
-              <option value="Services"  >Services</option>
-              <option value="Support"  >Support</option>
-              <option value="Accounting"  >Accounting</option>
-              <option value="Training"  >Training</option>
-              <option value="Legal"  >Legal</option>
-              <option value="Product Management"  >Product Management</option>
-            </select>
-            {errors.department && <small className="error-message" >{errors.department}</small>}</div>
+          <Select
+            name="department" label="Department"
+            value={formData.department} onChange={handleChange}
+            options={departments}
+            error={errors.department}
+          />
 
+          <RadioGroup
+            label="Gender"
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+            options={genderOptions}
+            error={errors.gender}
+          />
 
-          <div className="form-group" >
-            <div className="radio-group">
-              <label>Gender</label>
-              <input id="male" type="radio" name="gender" value="male" checked={formData.gender === "male"} onChange={handleChange} />
-              <label htmlFor="male" >Male</label>
-              <input id="female" type="radio" name="gender" value="female" checked={formData.gender === "female"} onChange={handleChange} />
-              <label htmlFor="female" >Female</label>
-              <input id="other" type="radio" name="gender" value="Other" checked={formData.gender === "Other"} onChange={handleChange} />
-              <label htmlFor="other" >Other</label></div>
-            {errors.gender && <small className="error-message" >{errors.gender}</small>}</div>
+          <FormField name="joiningDate" type="date" label="Joining Date" value={formData.joiningDate}
+            onChange={handleChange}
+            error={errors.joiningDate} />
 
-          <div className="form-group" >
-            <label htmlFor="joiningDate" >Joining Date</label>
-            <input type="date" id="joiningDate" name="joiningDate" value={formData.joiningDate} onChange={handleChange} />
-            {errors.joiningDate && <small className="error-message" >{errors.joiningDate}</small>}
-          </div>
+          <FormField name="salary" type="number" label="Salary" value={formData.salary} min="0"
+            onChange={handleChange}
+            error={errors.salary} />
 
-          <div className="form-group" >
-            <label htmlFor="salary"  >Salary</label>
-            <input type="number" id="salary" name="salary" min="0" value={formData.salary} onChange={handleChange} />
-            {errors.salary && <small className="error-message" >{errors.salary}</small>} </div>
+          <FormField name="address" as="textarea" label="Address" value={formData.address}
+            placeholder="Enter Address"
+            onChange={handleChange} rows="4"
+            error={errors.address} />
 
-      
-
-          <div className="form-group" >
-            <label htmlFor="address" >Address</label>
-            <textarea placeholder="Enter Address" id="address" name="address" rows="4" value={formData.address} onChange={handleChange}></textarea>
-            {errors.address && <small className="error-message" >{errors.address}</small>}
-          </div>
-
-          <button type="submit" className="submit-btn" >{selectedEmployee ? "Update Employee" : "Add Employee"}</button>
+          <Button type="submit" variant="primary" size="large"  >
+            {selectedEmployee ? "Update Employee" : "Add Employee"}
+          </Button>
         </form>
       </div>
 

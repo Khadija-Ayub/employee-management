@@ -5,7 +5,7 @@ import { MdDashboard } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { IoSettingsSharp } from "react-icons/io5";
 import { BsCalendarCheck } from "react-icons/bs";
-import "../../styles/sidebar.css";
+import "../../styles/layout/sidebar.css";
 import logo from "../../assets/logo.jpg";
 
 

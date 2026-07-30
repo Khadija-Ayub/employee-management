@@ -1,0 +1,123 @@
+/* ================= SETTINGS PAGE ================= */
+
+.settings-page {
+    width: 100%;
+    padding: 30px;
+}
+
+/* ================= PAGE HEADER ================= */
+
+.settings-page .page-header {
+    margin-bottom: 30px;
+}
+
+.settings-page .page-header h1 {
+    margin: 0 0 6px;
+    color: var(--heading-color);
+    font-size: 30px;
+}
+
+.settings-page .page-header p {
+    margin: 0;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+
+/* ================= SETTINGS CARD ================= */
+
+.settings-card {
+    width: 100%;
+    max-width: 750px;
+    background: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    padding: 30px;
+}
+
+
+/* ================= SETTINGS SECTION ================= */
+
+.settings-section {
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.settings-section:last-of-type {
+    margin-bottom: 0;
+}
+
+.settings-section h2 {
+    margin: 0 0 20px;
+    color: var(--heading-color);
+    font-size: 20px;
+}
+
+
+/* ================= NOTIFICATION OPTIONS ================= */
+
+.setting-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.setting-option:last-child {
+    margin-bottom: 0;
+}
+
+.setting-option input {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+
+/* ================= ACTIONS ================= */
+
+.settings-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.settings-actions .success-message {
+    margin: 0;
+}
+
+
+/* ================= DARK MODE ================= */
+
+[data-theme="dark"] .settings-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .35);
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 700px) {
+
+    .settings-page {
+        padding: 20px;
+    }
+
+    .settings-card {
+        padding: 20px;
+    }
+
+    .settings-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .settings-actions .button {
+        width: 100%;
+    }
+}
